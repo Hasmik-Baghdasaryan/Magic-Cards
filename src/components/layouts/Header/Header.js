@@ -1,7 +1,7 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
-import Button from "components/common/Button/Button";
+import Button from "components/common/HeaderButton/HeaderButton";
 
 import styles from "./Header.module.scss";
 

@@ -1,10 +1,11 @@
-import classNames from "classnames";
-
-import styles from "./Button.module.scss";
 import { useLocation } from "react-router-dom";
 
-function Button({ text, handleClick }) {
-  const pathname = useLocation();
+import classNames from "classnames";
+
+import styles from "./HeaderButton.module.scss";
+
+function HeaderButton({ text, handleClick }) {
+  const { pathname } = useLocation();
   const btnClass = classNames(styles.button, {
     [styles["login-button"]]: pathname === "/login",
     [styles["sign-up-button"]]: pathname === "/signup",
@@ -17,4 +18,4 @@ function Button({ text, handleClick }) {
   );
 }
 
-export default Button;
+export default HeaderButton;

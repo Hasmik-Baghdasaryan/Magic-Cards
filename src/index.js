@@ -6,6 +6,8 @@ import { Provider } from "react-redux";
 import { createRouter } from "route/configureRouter";
 import configureAppStore from "store/configureStore";
 
+import "./index.css";
+
 const router = createRouter();
 const store = configureAppStore();
 
