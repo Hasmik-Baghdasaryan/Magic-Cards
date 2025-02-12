@@ -1,11 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
 
-import userSlice from "./slices/authSlice";
+import authSlice from "./slices/authSlice";
 
 function configureAppStore() {
   return configureStore({
     reducer: {
-      user: userSlice,
+      auth: authSlice,
     },
   });
 }

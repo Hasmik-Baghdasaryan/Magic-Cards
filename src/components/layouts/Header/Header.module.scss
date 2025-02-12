@@ -1,0 +1,29 @@
+.header {
+  width: 96%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 50px;
+  border: 1px solid rgba(0, 0, 0, 0.968);
+  margin: 3px;
+  padding: 0 15px;
+
+  .logoLink {
+    text-decoration: none;
+    color: black;
+    font-size: 1.2rem;
+  }
+
+  nav {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+    .profileLink {
+      text-decoration: none;
+      color: black;
+      font-size: 1rem;
+      margin-right: 20px;
+    }
+  }
+}

@@ -1,0 +1,20 @@
+.button {
+  width: 80px;
+  height: 25px;
+  padding: 5px;
+  border-radius: 3px;
+  text-align: center;
+  font-size: 0.6rem;
+  font-weight: 500;
+  cursor: pointer;
+}
+.login-button,
+.sign-up-button {
+  background-color: rgb(217, 231, 214);
+  border: rgb(206, 222, 193) 2px solid;
+  color: rgba(0, 0, 0, 0.926);
+}
+.card-button {
+  background-color: rgb(223, 213, 230);
+  border: rgb(183, 164, 193) 2px solid;
+}

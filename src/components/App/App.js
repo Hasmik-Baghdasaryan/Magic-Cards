@@ -1,10 +1,15 @@
 import { Outlet } from "react-router-dom";
 
+import Header from "components/layouts/Header/Header";
+import Main from "components/layouts/Main/Main";
+
 function App() {
   return (
     <>
-      <h1>Magic cards</h1>
-      <Outlet />
+      <Header />
+      <Main>
+        <Outlet />
+      </Main>
     </>
   );
 }

@@ -9,8 +9,6 @@ import configureAppStore from "store/configureStore";
 const router = createRouter();
 const store = configureAppStore();
 
-console.log(store);
-
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   //<React.StrictMode>

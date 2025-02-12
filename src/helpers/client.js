@@ -14,13 +14,21 @@ export function signUp(userInfo) {
         if (!existingUsers.some((user) => user.id === userInfo.id)) {
           const updatedUsers = [...existingUsers, userInfo];
           localStorage.setItem("users", JSON.stringify(updatedUsers));
-          resolve({ success: true, message: SIGN_UP_SUCCESS_MSG });
+          resolve({
+            status: "success",
+            message: SIGN_UP_SUCCESS_MSG,
+            users: updatedUsers,
+          });
         } else {
-          reject({ success: false, message: SIGN_UP_FAIL_MSG });
+          reject({ status: "fail", message: SIGN_UP_FAIL_MSG, user: null });
         }
       } else {
         localStorage.setItem("users", JSON.stringify([userInfo]));
-        resolve({ success: true, message: SIGN_UP_SUCCESS_MSG });
+        resolve({
+          status: "success",
+          message: SIGN_UP_SUCCESS_MSG,
+          users: [userInfo],
+        });
       }
     }, 3_000);
   });
@@ -34,11 +42,15 @@ export function signIn(userInfo) {
         (user) =>
           user.email === userInfo.email && user.password === userInfo.password
       );
-
       if (foundUser) {
-        resolve({ success: true, message: SIGN_IN_SUCCESS_MSG });
+        localStorage.setItem("currentUser", JSON.stringify(foundUser));
+        resolve({
+          status: "success",
+          message: SIGN_IN_SUCCESS_MSG,
+          user: foundUser,
+        });
       } else {
-        reject({ success: false, message: SIGN_IN_FAIL_MSG });
+        reject({ status: "fail", message: SIGN_IN_FAIL_MSG, user: null });
       }
     }, 3_000);
   });
