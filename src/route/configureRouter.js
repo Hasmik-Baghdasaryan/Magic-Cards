@@ -9,10 +9,10 @@ import AuthLayout from "components/features/AythLayout/AuthLayout";
 export function createRouter() {
   const router = createBrowserRouter([
     {
-      path: "/",
       element: <App />,
       children: [
         {
+          path: "/",
           element: <AuthLayout />,
           children: [
             {

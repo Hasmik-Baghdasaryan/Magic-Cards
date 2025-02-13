@@ -11,7 +11,7 @@ export function signUp(userInfo) {
       const existingUsers = JSON.parse(localStorage.getItem("users")) || [];
 
       if (existingUsers.length) {
-        if (!existingUsers.some((user) => user.id === userInfo.id)) {
+        if (!existingUsers.some((user) => user.email === userInfo.email)) {
           const updatedUsers = [...existingUsers, userInfo];
           localStorage.setItem("users", JSON.stringify(updatedUsers));
           resolve({

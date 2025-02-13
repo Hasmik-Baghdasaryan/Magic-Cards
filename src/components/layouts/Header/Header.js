@@ -1,13 +1,15 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import Button from "components/common/HeaderButton/HeaderButton";
+import { resetStatus } from "store/slices/authSlice";
 
 import styles from "./Header.module.scss";
 
 function Header() {
   const { user } = useSelector((state) => state.auth);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const { pathname } = useLocation();
   const buttonText = createButtonText();
 
@@ -23,6 +25,7 @@ function Header() {
   function handleBtnClick() {
     const path = buttonText.toLocaleLowerCase().replace(/\s+/g, "");
     navigate(`/${path}`);
+    dispatch(resetStatus());
   }
 
   return (

@@ -5,9 +5,11 @@ import { useNavigate, Outlet } from "react-router-dom";
 function AuthLayout() {
   const { user } = useSelector((state) => state.auth);
   const navigate = useNavigate();
+
   useEffect(() => {
-    if (user) navigate("/feed");
-  });
+    navigate(user ? "/feed" : "/login");
+  }, [user, navigate]);
+
   return <Outlet />;
 }
 

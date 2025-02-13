@@ -23,6 +23,7 @@ function SignIn() {
     }
   }, [user]);
 
+  //dispatch(userSignIn({ email: "john@test.com", password: "1234" }));
   // function handleSignInBtnClick() {
   //   dispatch(userSignIn({ email: "john@test.com", password: "1234" }));
   // }

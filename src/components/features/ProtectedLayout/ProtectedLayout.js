@@ -7,8 +7,8 @@ function ProtectedLayout() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!user) navigate("/login");
-  });
+    navigate(user ? "/feed" : "/login");
+  }, [user, navigate]);
 
   return <Outlet />;
 }

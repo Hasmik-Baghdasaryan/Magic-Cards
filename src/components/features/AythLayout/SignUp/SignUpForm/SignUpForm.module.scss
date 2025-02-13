@@ -1,0 +1,19 @@
+.sign-up-form {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  .sign-up-input {
+    height: 25px;
+    border: 1px solid rgb(102, 102, 102);
+    border-radius: 3px;
+    padding: 5px;
+    &:last-of-type {
+      margin-bottom: 2rem;
+    }
+  }
+  .invalid-input {
+    border: 1px solid rgb(209, 174, 171);
+    background-color: rgb(241, 208, 205);
+  }
+}
