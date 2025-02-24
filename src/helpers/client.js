@@ -43,7 +43,9 @@ export function signIn(userInfo) {
           user.email === userInfo.email && user.password === userInfo.password
       );
       if (foundUser) {
-        localStorage.setItem("currentUser", JSON.stringify(foundUser));
+        userInfo.isRemembered
+          ? localStorage.setItem("currentUser", JSON.stringify(foundUser))
+          : sessionStorage.setItem("currentUser", JSON.stringify(foundUser));
         resolve({
           status: "success",
           message: SIGN_IN_SUCCESS_MSG,
@@ -52,6 +54,38 @@ export function signIn(userInfo) {
       } else {
         reject({ status: "fail", message: SIGN_IN_FAIL_MSG, user: null });
       }
+    }, 3_000);
+  });
+}
+
+export function createUserCard(cardInfo) {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      const existingCards = JSON.parse(localStorage.getItem("allCards")) || [];
+      if (existingCards.length) {
+        const updatedCards = [...existingCards, cardInfo];
+        localStorage.setItem("allCards", JSON.stringify(updatedCards));
+        resolve({
+          status: "success",
+          message: "card successfully created",
+          card: cardInfo,
+          cards: updatedCards,
+        });
+      } else {
+        localStorage.setItem("allCards", JSON.stringify([cardInfo]));
+        resolve({
+          status: "success",
+          message: "card successfully created",
+          card: cardInfo,
+          cards: [cardInfo],
+        });
+      }
+      if (!cardInfo)
+        reject({
+          status: "fail",
+          message: "Something went wrong!",
+          card: null,
+        });
     }, 3_000);
   });
 }
