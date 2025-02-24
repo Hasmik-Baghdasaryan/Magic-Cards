@@ -2,15 +2,19 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 import Button from "components/common/HeaderButton/HeaderButton";
+import Modal from "components/common/Modal/Modal";
 import { resetStatus } from "store/slices/authSlice";
 
 import styles from "./Header.module.scss";
+import { useState } from "react";
+import CreateCard from "components/features/ProtectedLayout/CreateCard/CreateCard";
 
 function Header() {
   const { user } = useSelector((state) => state.auth);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { pathname } = useLocation();
+  const [isModalVisible, setIsModalVisible] = useState(false);
   const buttonText = createButtonText();
 
   function createButtonText() {
@@ -24,8 +28,13 @@ function Header() {
 
   function handleBtnClick() {
     const path = buttonText.toLocaleLowerCase().replace(/\s+/g, "");
-    navigate(`/${path}`);
+    if (buttonText === "Create Card") toggleCreateCardModal();
+    else navigate(`/${path}`);
     dispatch(resetStatus());
+  }
+
+  function toggleCreateCardModal() {
+    setIsModalVisible(!isModalVisible);
   }
 
   return (
@@ -43,6 +52,11 @@ function Header() {
           <Button text={buttonText} handleClick={handleBtnClick}></Button>
         )}
       </nav>
+      {isModalVisible && (
+        <Modal onClose={toggleCreateCardModal}>
+          <CreateCard handleBtnClick={toggleCreateCardModal} />
+        </Modal>
+      )}
     </header>
   );
 }

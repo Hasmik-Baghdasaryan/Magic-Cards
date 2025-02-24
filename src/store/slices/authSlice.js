@@ -22,7 +22,7 @@ export const userSignIn = createAsyncThunk(
       const response = await signIn(userInfo);
       return response;
     } catch (error) {
-      thunkAPI.rejectWithValue(error);
+      return thunkAPI.rejectWithValue(error);
     }
   }
 );
