@@ -11,9 +11,18 @@
     &:last-of-type {
       margin-bottom: 2rem;
     }
+    &:focus {
+      border: 2px solid rgb(206, 222, 193);
+      background-color: none;
+      outline: none;
+    }
   }
   .invalid-input {
     border: 1px solid rgb(209, 174, 171);
     background-color: rgb(241, 208, 205);
+    outline: none;
+    &:focus {
+      border: 2px solid rgb(209, 174, 171);
+    }
   }
 }

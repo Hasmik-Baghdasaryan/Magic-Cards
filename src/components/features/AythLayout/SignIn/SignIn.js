@@ -1,34 +1,26 @@
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
-import { userSignIn } from "store/slices/authSlice";
-import Button from "components/common/HeaderButton/HeaderButton";
 import WelcomeText from "components/common/WelcomeText/WelcomeText";
+import SignInForm from "./SignInForm/SignInForm";
+import ErrorMessage from "components/common/ErrorMessage/ErrorMessage";
 
 import { welcomeTextData } from "data/welcomeTextData";
 import styles from "./SignIn.module.scss";
-import ComponentButton from "components/common/ComponentButton/ComponentButton";
 
 function SignIn() {
-  const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { user } = useSelector((state) => state.auth);
+  const { user, status, error } = useSelector((state) => state.auth);
+
+  const [errorMsg, setErrorMsg] = useState("");
 
   const { title, text } = welcomeTextData;
 
   useEffect(() => {
-    if (user) {
-      navigate("/profile");
-    }
-  }, [user]);
-
-  //dispatch(userSignIn({ email: "john@test.com", password: "1234" }));
-  // function handleSignInBtnClick() {
-  //   dispatch(userSignIn({ email: "john@test.com", password: "1234" }));
-  // }
-
-  const handleLoginSubmit = () => {};
+    if (status === "fail") setErrorMsg(error);
+    if (user) navigate("/profile");
+  }, [user, error, status, navigate]);
 
   return (
     <div className={styles["sign-in-section"]}>
@@ -37,29 +29,10 @@ function SignIn() {
       </section>
       <div className={styles["form-section"]}>
         <h3>Log in</h3>
-        <form onSubmit={handleLoginSubmit} className={styles["login-form"]}>
-          <input
-            type="text"
-            name="email"
-            placeholder="Email"
-            className={styles["login-input"]}
-          />
-          <input
-            type="password"
-            name="password"
-            placeholder="Password"
-            className={styles["login-input"]}
-          />
-          <div className={styles["checkbox-section"]}>
-            <input
-              type="checkbox"
-              name="remember-password"
-              id="rememberPassword"
-            />
-            <label htmlFor="rememberPassword">Remember me</label>
-          </div>
-          <ComponentButton text={"Login"} />
-        </form>
+        {errorMsg && (
+          <ErrorMessage value={errorMsg} className="sign-in-fail-message" />
+        )}
+        <SignInForm updateErrorMsg={setErrorMsg} />
       </div>
     </div>
   );

@@ -6,22 +6,21 @@ import WelcomeText from "components/common/WelcomeText/WelcomeText";
 import ErrorMessage from "components/common/ErrorMessage/ErrorMessage";
 import SignUpForm from "./SignUpForm/SignUpForm";
 
-import { SIGN_UP_FAIL_MSG } from "constants/constants";
 import { welcomeTextData } from "data/welcomeTextData";
 
 import styles from "./SignUp.module.scss";
 
 function SignUp() {
   const navigate = useNavigate();
-  const { status } = useSelector((state) => state.auth);
+  const { status, error } = useSelector((state) => state.auth);
 
   const [errorMsg, setErrorMsg] = useState("");
   const { title, text } = welcomeTextData;
 
   useEffect(() => {
     if (status === "success") navigate("/login");
-    if (status === "fail") setErrorMsg(SIGN_UP_FAIL_MSG);
-  }, [status, navigate]);
+    if (status === "fail") setErrorMsg(error);
+  }, [status, error, navigate]);
 
   return (
     <div className={styles["sign-up-section"]}>

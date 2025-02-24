@@ -1,6 +1,5 @@
-import { useState, useEffect, Fragment } from "react";
+import { useState, Fragment } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
 import cx from "classnames";
 
 import ErrorMessage from "components/common/ErrorMessage/ErrorMessage";
@@ -9,6 +8,7 @@ import Loader from "components/common/Loader/Loader";
 
 import { userSignUp } from "store/slices/authSlice";
 import { validateFields } from "helpers/validate";
+import { getPlaceholder } from "helpers/utility";
 
 import styles from "./SignUpForm.module.scss";
 
@@ -23,10 +23,6 @@ function SignUpForm() {
 
   const [validationErrors, setValidationErrors] = useState({});
   const signUpFormFields = Array.from(Object.keys(userData));
-
-  const getPlaceholder = (field) => {
-    return field.charAt(0).toUpperCase() + field.slice(1);
-  };
 
   const isBtnDisabled = () => {
     return (
