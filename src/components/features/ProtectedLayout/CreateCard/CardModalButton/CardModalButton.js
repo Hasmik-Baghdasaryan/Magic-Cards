@@ -1,3 +1,4 @@
+import cx from "classnames";
 import styles from "./CardModalButton.module.scss";
 
 function CardModalButton({ buttonText, isDisabled, handleClick }) {
@@ -5,7 +6,9 @@ function CardModalButton({ buttonText, isDisabled, handleClick }) {
     <button
       disabled={isDisabled}
       onClick={handleClick}
-      className={styles.button}
+      className={cx(styles.button, {
+        [styles["create-button"]]: buttonText === "Create",
+      })}
     >
       {buttonText}
     </button>

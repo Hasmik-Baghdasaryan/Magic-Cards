@@ -8,4 +8,15 @@
   font-size: 1rem;
   color: black;
   cursor: pointer;
+  &:disabled {
+    opacity: 0.6;
+    background-color: rgb(245, 245, 245);
+    border: 1px solid rgb(165, 165, 165);
+    cursor: not-allowed;
+  }
+}
+.create-button {
+  background-color: rgb(217, 231, 214);
+  border: rgb(206, 222, 193) 1px solid;
+  color: rgba(0, 0, 0, 0.926);
 }
