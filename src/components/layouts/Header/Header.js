@@ -1,13 +1,15 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { useCallback, useState } from "react";
 
 import Button from "components/common/HeaderButton/HeaderButton";
+import CreateCard from "components/features/ProtectedLayout/CreateCard/CreateCard";
 import Modal from "components/common/Modal/Modal";
+
 import { resetStatus } from "store/slices/authSlice";
+import { resetCardAddingStatus } from "store/slices/cardsSlice";
 
 import styles from "./Header.module.scss";
-import { useState } from "react";
-import CreateCard from "components/features/ProtectedLayout/CreateCard/CreateCard";
 
 function Header() {
   const { user } = useSelector((state) => state.auth);
@@ -33,9 +35,10 @@ function Header() {
     dispatch(resetStatus());
   }
 
-  function toggleCreateCardModal() {
+  const toggleCreateCardModal = useCallback(() => {
     setIsModalVisible(!isModalVisible);
-  }
+    if (!isModalVisible) dispatch(resetCardAddingStatus());
+  }, [isModalVisible, dispatch]);
 
   return (
     <header className={styles.header}>
