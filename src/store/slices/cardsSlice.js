@@ -17,13 +17,17 @@ export const createCard = createAsyncThunk(
 const initialState = {
   allCards: [],
   error: null,
-  status: "",
+  status: null,
 };
 
 const cardSlice = createSlice({
   name: "cards",
   initialState,
-  reducers: {},
+  reducers: {
+    resetCardAddingStatus: (state) => {
+      state.status = null;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(createCard.pending, (state) => {
@@ -32,10 +36,10 @@ const cardSlice = createSlice({
       })
       .addCase(createCard.fulfilled, (state, action) => {
         const { cards, card, status } = action.payload;
+        state.status = status;
         state.error = null;
         state.cards = cards;
         state.card = card;
-        state.status = status;
       })
       .addCase(createCard.rejected, (state, action) => {
         const { status, message } = action.payload;
@@ -44,5 +48,5 @@ const cardSlice = createSlice({
       });
   },
 });
-
+export const { resetCardAddingStatus } = cardSlice.actions;
 export default cardSlice.reducer;
