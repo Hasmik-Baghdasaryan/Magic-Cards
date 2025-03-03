@@ -1,0 +1,28 @@
+.card {
+  border: 2px solid black;
+  border-radius: 5px;
+  padding: 20px;
+  position: relative;
+
+  .date {
+    position: absolute;
+    top: 30px;
+    right: 20px;
+  }
+
+  .author-and-action-block {
+    display: flex;
+    justify-content: space-between;
+
+    .favorite-checkbox-block {
+      display: flex;
+      align-items: center;
+      gap: 3px;
+    }
+
+    .author {
+      font-size: 1rem;
+      font-weight: bold;
+    }
+  }
+}

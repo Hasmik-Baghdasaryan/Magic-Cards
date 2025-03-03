@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 import { createUserCard } from "helpers/client";
+import { getAllCards } from "helpers/utility";
 
 export const createCard = createAsyncThunk(
   "cards/createCard",
@@ -15,7 +16,7 @@ export const createCard = createAsyncThunk(
 );
 
 const initialState = {
-  allCards: [],
+  allCards: getAllCards() || [],
   error: null,
   status: null,
 };

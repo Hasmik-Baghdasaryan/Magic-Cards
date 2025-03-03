@@ -6,4 +6,7 @@ export const SIGN_IN_FAIL_MSG = "Incorrect email or password!";
 export const CREATE_CARD_SUCCESS_MSG = "Your card was successfully created";
 export const CREATE_CARD_FAIL_MSG = "Something went wrong";
 
+export const NO_OTHER_USERS_FOUND_MSG =
+  "There are no other users in the system yet";
+
 export const REQUIRED_MSG = "Required!";

@@ -5,6 +5,7 @@ import ProtectedLayout from "components/features/ProtectedLayout/ProtectedLayout
 import SignIn from "components/features/AythLayout/SignIn/SignIn";
 import SignUp from "components/features/AythLayout/SignUp/SignUp";
 import AuthLayout from "components/features/AythLayout/AuthLayout";
+import FeedPage from "components/features/ProtectedLayout/FeedPage/FeedPage";
 
 export function createRouter() {
   const router = createBrowserRouter([
@@ -31,10 +32,16 @@ export function createRouter() {
             {
               path: "/profile",
               element: <h1>Profile</h1>,
+              children: [
+                {
+                  path: "/profile/:id",
+                  element: <p>user profile</p>,
+                },
+              ],
             },
             {
               path: "/feed",
-              element: <h1>Feed</h1>,
+              element: <FeedPage />,
             },
           ],
         },
